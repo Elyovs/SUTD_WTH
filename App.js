@@ -32,7 +32,7 @@ export default function App() {
   }
 
   function handleSubmit() {
-    Data_list.push({event: event, location: location, time: time, alert: alert});
+    Data_list.push({event: event, location: location, time: time, alert: alert, description: description});
     setToggle(0);
     console.log(Data_list);
   }
@@ -75,13 +75,14 @@ export default function App() {
           <View style={[styles.RectangleContainer, { top: 100 }]}>
             <View style={[styles.RectangleShape, { backgroundColor: '#f50057' }]}>
               <Text style={styles.paragraph}>
-                Event name 1
+                {Data_list.length > 0 ? Data_list[0].event : ""}
               </Text>
               <Text style={styles.paragraph}>
-                Location 1, Time 1
+                {Data_list.length > 0 ? Data_list[0].location : ""}, 
+                {Data_list.length > 0 ? Data_list[0].time : ""}
               </Text>
               <Text style={styles.paragraph}>
-                Link 1
+              {Data_list.length > 0 ? Data_list[0].description : ""}
               </Text>
             </View>
           </View>
