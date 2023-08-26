@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, Pressable, SafeAreaView, StyleSheet, View, TouchableOpacity} from 'react-native';
+import { Input_tab } from './Input';
 
 export default function App() {
 
@@ -9,7 +10,7 @@ export default function App() {
   <TouchableOpacity style={styles.button} onPress={onPress}>
     <Text style={styles.buttonText}>{title}</Text>
   </TouchableOpacity>
-);
+  );
 
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function App() {
 
   return (
     <SafeAreaView>
-    <SafeAreaView style={styles.headerPage}>
+    <SafeAreaView style={[styles.headerPage, {paddingTop:40}]}>
       <Text style={{ textAlign: 'left', padding:0, paddingTop:50, paddingBottom:10, fontSize:25, fontWeight:'bold',color:'rgb(255,255,255)',marginLeft:10}}> Parents </Text>
       <Pressable style={styles.button1}>
       <Text style={styles.text1}>+</Text>
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     position: 'absolute',
-    bottom: -650,
+    bottom: -580,
     left: 0,
     right: 0,
     padding: 16,
@@ -172,7 +173,5 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
   },
-
-
 
 });

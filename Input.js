@@ -8,6 +8,7 @@ export default function Input_tab() {
   const [location, setLocation] = useState("");
   const [time, setTime] = useState("");
   const [alert, setAlert] = useState("");
+  const [description, setDescription] = useState("");
 
   function handleEventChange(text) {
     setEvent(text);
@@ -26,8 +27,12 @@ export default function Input_tab() {
   }
 
   function handleSubmit() {
-    Data_list.push({event: event, location: location, time: time, alert: alert});
+    Data_list.push({event: event, location: location, time: time, alert: alert, description: description});
     console.log(Data_list);
+  }
+
+  function handleDescriptionChange(text) {
+    setDescription(text);
   }
 
   return (
@@ -69,6 +74,15 @@ export default function Input_tab() {
           placeholder="x (in minutes)" 
           value={alert} 
           onChangeText={handleAlertChange} 
+        />
+      </View>
+      <View style={{marginHorizontal: 10, width: '75%'}}>
+        <Text style={{marginTop: 30}}> Description </Text>
+        <TextInput 
+          style={styles.input} 
+          placeholder="Description" 
+          value={description} 
+          onChangeText={handleDescriptionChange} 
         />
       </View>
       <Button title="Submit" onPress={handleSubmit} />
