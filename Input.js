@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topRow: {
-      backgroundColor:'yellow', 
+      backgroundColor:'pink', 
       paddingTop: 50, 
       paddingHorizontal: 160,
       paddingBottom: 20,
