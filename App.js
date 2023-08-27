@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Pressable, SafeAreaView, StyleSheet, View, TouchableOpacity, TextInput, Button} from 'react-native';
+import { Text, Pressable, SafeAreaView, StyleSheet, View, TouchableOpacity, TextInput, Button, Vibration} from 'react-native';
 import { Input_tab } from './Input.js';
 
 export const Data_list = [];
@@ -14,6 +14,27 @@ export default function App() {
   const [time, setTime] = useState("");
   const [alert, setAlert] = useState("");
   const [description, setDescription] = useState("");
+
+  const [hour, setHour] = useState(null);
+  const [minute, setMinute] = useState(null);
+
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  // let hour = new Date().getHours();
+  // let minute = new Date().getMinutes();
+  // console.log(`${hour}:${minute+10}`);
+
+  // useEffect(() => {
+  //   console.log(`${hour}:${minute+10}`);
+  // }, [hour, minute]);
+  // if (Data_list.length > 0){
+  //   console.log(Data_list[0].time)
+  // }
+
+  // if(Data_list.length > 0 && `${hour}:${minute+10}` === Data_list[0].time) {
+  //   Vibration.vibrate(1000);
+  //   Data_list.pop(0);
+  // }
 
   function handleEventChange(text) {
     setEvent(text);
@@ -31,10 +52,12 @@ export default function App() {
     setAlert(text);
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     Data_list.push({event: event, location: location, time: time, alert: alert, description: description});
     setToggle(0);
     console.log(Data_list);
+    await delay(2000);
+    Vibration.vibrate(1000);
   }
 
   function handleDescriptionChange(text) {
@@ -47,12 +70,23 @@ export default function App() {
   </TouchableOpacity>
   );
 
-
+  
   useEffect(() => {
     let today = new Date();
     let date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
     setDate(date);
   }, []);
+
+  // useEffect(() => {
+  //   setHour(new Date().getHours());
+  //   setMinute(new Date().getMinutes());
+  // })
+  
+  // console.log(`${hour}:${minute+10}`);
+    // let timeline = new Date();
+    // let dead = timeline.getHours() + ':' + timeline.getMinutes();
+    // console.log(dead);
+  
 
   if(toggle === 0) {
     return (
@@ -60,8 +94,8 @@ export default function App() {
       <SafeAreaView style={[styles.headerPage, {paddingTop:40}]}>
         <Text style={{ textAlign: 'left', padding:0, paddingTop:50, paddingBottom:10, fontSize:25, fontWeight:'bold',color:'rgb(255,255,255)',marginLeft:10}}> Parents </Text>
         <Pressable style={styles.button1} onPress={() => {setToggle(1)}}>
-        <Text style={styles.text1}>+</Text>
-      </Pressable>
+          <Text style={styles.text1}>+</Text>
+        </Pressable>
       </SafeAreaView>
       <View>
         <Text style = {{marginLeft:10, marginTop:20, fontWeight:'bold', fontSize:23}}> Today </Text>
@@ -180,6 +214,7 @@ export default function App() {
   }
   
 }
+
 
 const styles = StyleSheet.create({
   container: {
